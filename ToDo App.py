@@ -9,13 +9,12 @@ cursor.execute(s)
 mydb.commit() #Commit Changes
 mydb.close() #Close Connection
 
-# Making GUI
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(468, 410)
+        MainWindow.resize(468, 442)
         MainWindow.setMinimumSize(QtCore.QSize(468, 410))
-        MainWindow.setMaximumSize(QtCore.QSize(468, 410))
+        MainWindow.setMaximumSize(QtCore.QSize(4000, 4000))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
@@ -42,7 +41,7 @@ class Ui_MainWindow(object):
         self.progressBar.setProperty("value", 0)
         self.progressBar.setObjectName("progressBar")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(10, 350, 281, 41))
+        self.label.setGeometry(QtCore.QRect(10, 380, 281, 41))
         font = QtGui.QFont()
         font.setFamily("Agency FB")
         font.setPointSize(20)
@@ -59,6 +58,9 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.listWidget.setFont(font)
         self.listWidget.setObjectName("listWidget")
+        self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget,clicked=lambda:self.cleardatabase())
+        self.pushButton_4.setGeometry(QtCore.QRect(10, 350, 451, 31))
+        self.pushButton_4.setObjectName("pushButton_4")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -69,6 +71,15 @@ class Ui_MainWindow(object):
 
         # Grab all and show it
         self.grabdata()
+
+    # Clear database
+    def cleardatabase(self):
+        mydb=sqlite3.connect('todo list.db')
+        cursor=mydb.cursor();cursor.execute('delete from todolist')
+        mydb.commit()
+        mydb.close()
+        self.label.setText('Database cleared successfully.')
+        QtCore.QTimer.singleShot(1500,self.clear_label)
 
     # Grab Data from Database
     def grabdata(self):
@@ -102,46 +113,48 @@ class Ui_MainWindow(object):
     i=1
     # Save ToDo List to a Database
     def save_to(self):
-        global i
-
-        self.progressBar.setProperty('value',self.i)
-        if self.i!=100:
-            self.i+=1
-            QtCore.QTimer.singleShot(10,self.save_to)
-        else:
-            self.label.setText('Saved to Database Successfully')
-            self.progressBar.setProperty('value',0)
-            self.i=1
-
-            mydb=sqlite3.connect('todo list.db')
-            cursor=mydb.cursor()
-
-            cursor.execute('delete from todolist')
-
-            items=[]
-
-            for i in range(self.listWidget.count()):
-                values=self.listWidget.item(i)
-                values=values.text()
-                items.append((values,))
-
-            cursor.executemany('insert into todolist values(?)',items)
-
-            mydb.commit()
-            mydb.close()
-
-            QtCore.QTimer.singleShot(1000,self.clear_label)
-
+        if self.listWidget.count()==0:
+            self.label.setText('Nothing to Save.')
+            QtCore.QTimer.singleShot(1500,self.clear_label)
             return
+        else:
+            global i
 
+            self.progressBar.setProperty('value',self.i)
+            if self.i!=100:
+                self.i+=1
+                QtCore.QTimer.singleShot(10,self.save_to)
+            else:
+                self.label.setText('Successfully Saved.')
+                self.progressBar.setProperty('value',0)
+                self.i=1
+
+                mydb=sqlite3.connect('todo list.db')
+                cursor=mydb.cursor()
+
+                cursor.execute('delete from todolist')
+    
+                items=[]
+
+                for i in range(self.listWidget.count()):
+                    values=self.listWidget.item(i)
+                    values=values.text()
+                    items.append((values,))
+                cursor.executemany('insert into todolist values(?)',items)
+                mydb.commit()
+                mydb.close()
+
+                QtCore.QTimer.singleShot(1500,self.clear_label)
+                return
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "ToDo App"))
         self.pushButton.setText(_translate("MainWindow", "Add Item"))
         self.pushButton_2.setText(_translate("MainWindow", "Delete Item"))
         self.pushButton_3.setText(_translate("MainWindow", "Save to Database"))
         self.label.setText(_translate("MainWindow", ""))
+        self.pushButton_4.setText(_translate("MainWindow", "Clear Database"))
 
 
 if __name__ == "__main__":
