@@ -13,8 +13,8 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(468, 442)
-        MainWindow.setMinimumSize(QtCore.QSize(468, 410))
-        MainWindow.setMaximumSize(QtCore.QSize(4000, 4000))
+        MainWindow.setMinimumSize(QtCore.QSize(468, 442))
+        MainWindow.setMaximumSize(QtCore.QSize(468, 442))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
