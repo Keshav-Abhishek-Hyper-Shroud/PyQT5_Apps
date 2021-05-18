@@ -7,5 +7,5 @@
 #### User need to install PyQt5 & pyautogui
   * `pip install PyQt5` [Click Here](https://pypi.org/project/PyQt5/)
   * `pip install pyautogui` [Click Here](https://pypi.org/project/PyAutoGUI/)
-  * `Click`(https://pypi.org/project/PyQt5/)
+  * [`Click`](https://pypi.org/project/PyQt5/)
 ### Link: [ToDo App](https://github.com/Keshav-Abhishek-Hyper-Shroud/PyQT5_Apps/blob/master/ToDo%20App.py) & [ToDo App {Video Support}](https://drive.google.com/file/d/1l0r-0fWAwBtkVr22W5Dpld7MK63_cKU_/view?usp=sharing)
