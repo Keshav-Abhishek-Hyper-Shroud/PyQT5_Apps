@@ -1,4 +1,4 @@
-# (PyQT5 Apps)
+#                                                                                PyQT5 Apps
 
 ## Simple Loading
 ### Link: [Simple Loading](https://github.com/Keshav-Abhishek-Hyper-Shroud/PyQT5_Apps/blob/master/Simple%20Loading.py)
