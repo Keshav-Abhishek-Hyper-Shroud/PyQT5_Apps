@@ -13,7 +13,7 @@
 ### Link: [ToDo App](https://github.com/Keshav-Abhishek-Hyper-Shroud/PyQT5_Apps/blob/master/ToDo%20App.py) & [Video Support](https://drive.google.com/file/d/1l0r-0fWAwBtkVr22W5Dpld7MK63_cKU_/view?usp=sharing)
 
 #
-# PyQt5 Calculator
+## PyQt5 Calculator
 #### User need to install libraries:- PyQt5
  * [`pip install PyQt5`](https://pypi.org/project/PyQt5/)
 ### Link: [PyQt5 Calculator](https://github.com/Keshav-Abhishek-Hyper-Shroud/PyQT5_Apps/blob/master/PyQt5%20Calculator.py) & [Video Support](https://drive.google.com/file/d/12uG_kG-1wNaSmzC537EWagjuENSiLSGR/view?usp=sharing)
