@@ -6,7 +6,7 @@
   * [`pip install PyQt5`](https://pypi.org/project/PyQt5/)
 #
 
-## ToDo App
+## - ToDo App
 #### User need to install libraries:- PyQt5 & pyautogui
   * [`pip install PyQt5`](https://pypi.org/project/PyQt5/)
   * [`pip install pyautogui`](https://pypi.org/project/PyAutoGUI/)
