@@ -17,5 +17,5 @@
 #### User need to install library:- PyQt5 & pyautogui
  * [`pip install PyQt5`](https://pypi.org/project/PyQt5/)
  * [`pip install pyautogui`](https://pypi.org/project/PyAutoGUI/)
-### Link: [*PyQt5 Calculator*](https://github.com/Keshav-Abhishek-Hyper-Shroud/PyQT5_Apps/blob/master/PyQt5%20Calculator.py) & > [*Video Support*](https://drive.google.com/file/d/12uG_kG-1wNaSmzC537EWagjuENSiLSGR/view?usp=sharing)
+### Link: [*PyQt5 Calculator*](https://github.com/Keshav-Abhishek-Hyper-Shroud/PyQT5_Apps/blob/master/PyQt5%20Calculator.py) & [> *Video Support*](https://drive.google.com/file/d/12uG_kG-1wNaSmzC537EWagjuENSiLSGR/view?usp=sharing)
 #
