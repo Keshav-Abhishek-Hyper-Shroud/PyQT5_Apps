@@ -22,5 +22,5 @@
 ## PyQt5 NotePad
 #### User need to install library:- PyQt5
  * [`pip install PyQt5`](https://pypi.org/project/PyQt5/)
-### Lin: [*PyQt5 NotePad*](https://github.com/Keshav-Abhishek-Hyper-Shroud/PyQT5_Apps/blob/master/PyQt5%20NotePad.py)
+### Link: [*PyQt5 NotePad*](https://github.com/Keshav-Abhishek-Hyper-Shroud/PyQT5_Apps/blob/master/PyQt5%20NotePad.py)
 #
