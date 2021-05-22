@@ -2,6 +2,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QFileDialog
 import os
+import win32api
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -43,6 +44,8 @@ class Ui_MainWindow(object):
         self.actionOpen.setObjectName("actionOpen")
         self.actionSave = QtWidgets.QAction(MainWindow)
         self.actionSave.setObjectName("actionSave")
+        self.actionPrint=QtWidgets.QAction(MainWindow)
+        self.actionPrint.setObjectName('actionPrint')
         self.actionUndo = QtWidgets.QAction(MainWindow)
         self.actionUndo.setObjectName("actionUndo")
         self.actionRedo = QtWidgets.QAction(MainWindow)
@@ -54,6 +57,8 @@ class Ui_MainWindow(object):
         self.menuFile.addAction(self.actionNew)
         self.menuFile.addAction(self.actionOpen)
         self.menuFile.addAction(self.actionSave)
+        self.menuFile.addSeparator()
+        self.menuFile.addAction(self.actionPrint)
         self.menuOptions.addAction(self.actionUndo)
         self.menuOptions.addAction(self.actionRedo)
         self.menuOptions.addSeparator()
@@ -79,9 +84,22 @@ class Ui_MainWindow(object):
         self.actionRedo.triggered.connect(self.redo)
         self.actionWrap.triggered.connect(self.wrap)
         self.actionUnwrap.triggered.connect(self.unwrap)
+        self.actionPrint.triggered.connect(self.print_document)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    # Print the Text File
+    def print_document(self):
+        global file_exists
+        if os.path.exists(self.file_exists):
+            win32api.ShellExecute(0,'print',self.file_exists,None,'.',0)
+        else:
+            print_msg=QMessageBox()
+            print_msg.setWindowTitle('Access Denied')
+            print_msg.setText('File might not exists or printer not set as default.')
+            print_msg.setIcon(QMessageBox.Warning)
+            print_msg.exec_()
 
     # Wrap the text
     def wrap(self):
@@ -93,8 +111,10 @@ class Ui_MainWindow(object):
 
     # Initializes New File
     def newfile(self):
+        global file_exists
         MainWindow.setWindowTitle('PyQt5 NotePad - Untitled')
         self.textEdit.setText('')
+        self.file_exists=''
 
     # Define changefontstyle
     def changefontstyle(self):
@@ -136,13 +156,15 @@ class Ui_MainWindow(object):
 
             self.textEdit.setText(data)
 
+        global file_exists
+        self.file_exists=filename
+
     # Define saveit - Helps to save text file(s)
     file_exists=''
     def saveit(self):
         global file_exists
         s=str(self.textEdit.toPlainText())
         if s:
-
             try:
                 os.path.exists(self.file_exists)
 
@@ -155,11 +177,9 @@ class Ui_MainWindow(object):
                 msg.setText('Your file has been saved.')
                 msg.setIcon(QMessageBox.Information)
                 msg.exec_()
-
             except:
                 filename=QFileDialog.getSaveFileName(None,'Save File','/','Text Files (*.txt)')
                 if filename[0]:
-
                     f=open(filename[0],'w')
                     f.write(s)
                     f.close()
@@ -174,7 +194,6 @@ class Ui_MainWindow(object):
 
                     MainWindow.setWindowTitle('PyQt5 NotePad - {}'.format(filenameonly))
                     self.file_exists=filename[0]
-
                 else:
                     msg=QMessageBox()
                     msg.setWindowTitle('Not Saved!')
@@ -194,6 +213,7 @@ class Ui_MainWindow(object):
         self.actionRedo.setText(_translate("MainWindow", "Redo"))
         self.actionWrap.setText(_translate("MainWindow", "Wrap"))
         self.actionUnwrap.setText(_translate("MainWindow", "Unwrap"))
+        self.actionPrint.setText(_translate("MainWindow", "Print"))
 
 
 if __name__ == "__main__":
