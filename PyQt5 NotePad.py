@@ -1,6 +1,6 @@
 # Importing Needed Libraries
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMessageBox, QFileDialog, QComboBox, QFontComboBox
+from PyQt5.QtWidgets import QMessageBox, QFileDialog
 import os
 
 class Ui_MainWindow(object):
@@ -12,73 +12,103 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
-        self.textEdit.setGeometry(QtCore.QRect(10, 40, 671, 531))
+        self.textEdit.setGeometry(QtCore.QRect(10, 40, 671, 510))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(16)
         self.textEdit.setFont(font)
         self.textEdit.setObjectName("textEdit")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget,clicked=lambda:self.openit())
-        self.pushButton.setGeometry(QtCore.QRect(10, 10, 91, 23))
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget,clicked=lambda:self.saveit())
-        self.pushButton_2.setGeometry(QtCore.QRect(110, 10, 91, 23))
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget,clicked=lambda:self.undo())
-        self.pushButton_3.setGeometry(QtCore.QRect(210, 10, 91, 23))
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget,clicked=lambda:self.redo())
-        self.pushButton_4.setGeometry(QtCore.QRect(310, 10, 91, 23))
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.sizecomboBox = QComboBox(self.centralwidget)
-        self.sizecomboBox.setGeometry(QtCore.QRect(410, 10, 91, 23))
-        self.sizecomboBox.setObjectName('sizecomboBox')
-        self.fontstylecomboBox = QFontComboBox(self.centralwidget)
-        self.fontstylecomboBox.setGeometry(QtCore.QRect(510, 10, 120, 23))
-        self.fontstylecomboBox.setObjectName('fontstylecomboBox')
-        self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget,clicked=lambda:self.wrap_unwrap())
-        self.pushButton_5.setGeometry(QtCore.QRect(635,10,50,23))
-        self.pushButton_5.setObjectName('pushButton_5')
+        self.comboBox = QtWidgets.QComboBox(self.centralwidget)
+        self.comboBox.setGeometry(QtCore.QRect(10, 10, 91, 22))
+        self.comboBox.setObjectName("comboBox")
+        self.fontComboBox = QtWidgets.QFontComboBox(self.centralwidget)
+        self.fontComboBox.setGeometry(QtCore.QRect(110, 10, 151, 22))
+        self.fontComboBox.setEditable(False)
+        self.fontComboBox.setObjectName("fontComboBox")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.menuBar = QtWidgets.QMenuBar(MainWindow)
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 690, 21))
+        self.menuBar.setObjectName("menuBar")
+        self.menuFile = QtWidgets.QMenu(self.menuBar)
+        self.menuFile.setObjectName("menuFile")
+        self.menuOptions = QtWidgets.QMenu(self.menuBar)
+        self.menuOptions.setObjectName("menuOptions")
+        MainWindow.setMenuBar(self.menuBar)
+        self.actionNew = QtWidgets.QAction(MainWindow)
+        self.actionNew.setObjectName("actionNew")
+        self.actionOpen = QtWidgets.QAction(MainWindow)
+        self.actionOpen.setObjectName("actionOpen")
+        self.actionSave = QtWidgets.QAction(MainWindow)
+        self.actionSave.setObjectName("actionSave")
+        self.actionUndo = QtWidgets.QAction(MainWindow)
+        self.actionUndo.setObjectName("actionUndo")
+        self.actionRedo = QtWidgets.QAction(MainWindow)
+        self.actionRedo.setObjectName("actionRedo")
+        self.actionWrap = QtWidgets.QAction(MainWindow)
+        self.actionWrap.setObjectName("actionWrap")
+        self.actionUnwrap = QtWidgets.QAction(MainWindow)
+        self.actionUnwrap.setObjectName("actionUnwrap")
+        self.menuFile.addAction(self.actionNew)
+        self.menuFile.addAction(self.actionOpen)
+        self.menuFile.addAction(self.actionSave)
+        self.menuOptions.addAction(self.actionUndo)
+        self.menuOptions.addAction(self.actionRedo)
+        self.menuOptions.addSeparator()
+        self.menuOptions.addAction(self.actionWrap)
+        self.menuOptions.addAction(self.actionUnwrap)
+        self.menuBar.addAction(self.menuFile.menuAction())
+        self.menuBar.addAction(self.menuOptions.menuAction())
 
         # Sets the range of sizes for text
-        self.sizecomboBox.addItems([f'{i}' for i in range(1,101)])
-        self.sizecomboBox.setCurrentText('16')
-        self.sizecomboBox.currentTextChanged.connect(self.changefontsize)
+        self.comboBox.addItems([f'{i}' for i in range(1,101)])
+        self.comboBox.setCurrentText('16')
+        self.comboBox.currentTextChanged.connect(self.changefontsize)
 
         # Sets the names of text styles
-        self.fontstylecomboBox.setEditable(False)
-        self.fontstylecomboBox.setCurrentText('Times New Roman')
-        self.fontstylecomboBox.currentTextChanged.connect(self.changefontstyle)
+        self.fontComboBox.setEditable(False)
+        self.fontComboBox.setCurrentText('Times New Roman')
+        self.fontComboBox.currentTextChanged.connect(self.changefontstyle)
+
+        self.actionNew.triggered.connect(self.newfile)
+        self.actionOpen.triggered.connect(self.openit)
+        self.actionSave.triggered.connect(self.saveit)
+        self.actionUndo.triggered.connect(self.undo)
+        self.actionRedo.triggered.connect(self.redo)
+        self.actionWrap.triggered.connect(self.wrap)
+        self.actionUnwrap.triggered.connect(self.unwrap)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    # Wrap_Unwrap Text
-    def wrap_unwrap(self):
-        if self.pushButton_5.text()=='Unwrap':
-            self.textEdit.setLineWrapMode(False)
-            self.pushButton_5.setText('Wrap')
-        else:
-            self.textEdit.setLineWrapMode(True)
-            self.pushButton_5.setText('Unwrap')
+    # Wrap the text
+    def wrap(self):
+        self.textEdit.setLineWrapMode(True)
+
+    # Unwrap the text
+    def unwrap(self):
+        self.textEdit.setLineWrapMode(False)
+
+    # Initializes New File
+    def newfile(self):
+        MainWindow.setWindowTitle('PyQt5 NotePad - Untitled')
+        self.textEdit.setText('')
 
     # Define changefontstyle
     def changefontstyle(self):
-        fontsize=int(self.sizecomboBox.currentText())
+        fontsize=int(self.comboBox.currentText())
         font = QtGui.QFont()
-        font.setFamily(self.fontstylecomboBox.currentText())
+        font.setFamily(self.fontComboBox.currentText())
         font.setPointSize(fontsize)
         self.textEdit.setFont(font)
 
     # Define changefontsize
     def changefontsize(self):
-        fontsize=int(self.sizecomboBox.currentText())
+        fontsize=int(self.comboBox.currentText())
         font = QtGui.QFont()
-        font.setFamily(self.fontstylecomboBox.currentText())
+        font.setFamily(self.fontComboBox.currentText())
         font.setPointSize(fontsize)
         self.textEdit.setFont(font)
 
@@ -93,6 +123,8 @@ class Ui_MainWindow(object):
     # Define openit - Helps to open existing text file(s)
     def openit(self):
         dirs=QFileDialog.getOpenFileName(None,'Open File','/','Text Files (*.txt)')
+
+        MainWindow.setWindowTitle('PyQt5 NotePad - '+dirs[0].split('/')[-1])
 
         filename=dirs[0]
         if filename:
@@ -152,12 +184,17 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "PyQt5 NotePad"))
-        self.pushButton.setText(_translate("MainWindow", "Open"))
-        self.pushButton_2.setText(_translate("MainWindow", "Save"))
-        self.pushButton_3.setText(_translate("MainWindow", "Undo"))
-        self.pushButton_4.setText(_translate("MainWindow", "Redo"))
-        self.pushButton_5.setText(_translate("MainWindow", "Unwrap"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "PyQt5 NotePad - Untitled"))
+        self.menuFile.setTitle(_translate("MainWindow", "File"))
+        self.menuOptions.setTitle(_translate("MainWindow", "Options"))
+        self.actionNew.setText(_translate("MainWindow", "New"))
+        self.actionOpen.setText(_translate("MainWindow", "Open"))
+        self.actionSave.setText(_translate("MainWindow", "Save"))
+        self.actionUndo.setText(_translate("MainWindow", "Undo"))
+        self.actionRedo.setText(_translate("MainWindow", "Redo"))
+        self.actionWrap.setText(_translate("MainWindow", "Wrap"))
+        self.actionUnwrap.setText(_translate("MainWindow", "Unwrap"))
+
 
 if __name__ == "__main__":
     import sys
