@@ -24,3 +24,9 @@
  * [`pip install PyQt5`](https://pypi.org/project/PyQt5/)
 ### Link: [*PyQt5 NotePad*](https://github.com/Keshav-Abhishek-Hyper-Shroud/PyQT5_Apps/blob/master/PyQt5%20NotePad.py)
 #
+## Encrypt PDF
+#### User need to install libraries:- PyQt5,PyPDF3
+ * [`pip install PyQt5`](https://pypi.org/project/PyQt5/)
+ * ['pip install PyPDF3']
+### Link: [*Encrypt PDF*](https://github.com/Keshav-Abhishek-Hyper-Shroud/PyQT5_Apps/blob/master/Encrypt%20PDF.py)
+#
