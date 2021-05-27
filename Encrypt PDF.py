@@ -51,6 +51,7 @@ class Ui_MainWindow(object):
 		font.setBold(True)
 		font.setWeight(75)
 		self.browsePDF.setFont(font)
+		self.browsePDF.setFocus(True)
 		self.browsePDF.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 		self.browsePDF.setFlat(False)
 		self.browsePDF.setObjectName("browsePDF")
