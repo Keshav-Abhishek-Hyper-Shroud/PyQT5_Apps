@@ -1,7 +1,7 @@
 # Importing needed libraries
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyPDF3 import PdfFileReader, PdfFileWriter
-from PyQt5.QtWidgets import QMessageBox, QTimeEdit
+from PyQt5.QtWidgets import QMessageBox
 
 filename=''
 
