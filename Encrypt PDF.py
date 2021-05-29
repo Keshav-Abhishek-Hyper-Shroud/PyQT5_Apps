@@ -1,7 +1,8 @@
 # Importing needed libraries
+from os import startfile
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyPDF3 import PdfFileReader, PdfFileWriter
-from PyQt5.QtWidgets import QMessageBox, QTimeEdit
+from PyQt5.QtWidgets import QMessageBox
 
 filename=''
 
@@ -51,6 +52,7 @@ class Ui_MainWindow(object):
 		font.setBold(True)
 		font.setWeight(75)
 		self.browsePDF.setFont(font)
+		self.browsePDF.setFocus(True)
 		self.browsePDF.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 		self.browsePDF.setFlat(False)
 		self.browsePDF.setObjectName("browsePDF")
@@ -62,6 +64,7 @@ class Ui_MainWindow(object):
 		font.setBold(True)
 		font.setWeight(75)
 		self.userPassword.setFont(font)
+		self.userPassword.keyReleaseEvent=self.allow
 		self.userPassword.setStyleSheet('color:red;')
 		self.userPassword.setEchoMode(2) # Refer PyQt5.QtWidgets.QtLineEdit (Documentation)
 		self.userPassword.setObjectName("userPassword")
@@ -73,6 +76,7 @@ class Ui_MainWindow(object):
 		font.setBold(True)
 		font.setWeight(75)
 		self.ownerPassword.setFont(font)
+		self.ownerPassword.keyReleaseEvent=self.allow
 		self.ownerPassword.setStyleSheet('color:red;')
 		self.ownerPassword.setEchoMode(2) # Refer PyQt5.QtWidgets.QtLineEdit (Documentation)
 		self.ownerPassword.setObjectName("ownerPassword")
@@ -125,6 +129,13 @@ class Ui_MainWindow(object):
 		self.retranslateUi(MainWindow)
 		QtCore.QMetaObject.connectSlotsByName(MainWindow)
 	
+	# Gives Permission to Move Ahead
+	def allow(self,event):
+		if self.ownerPassword.text()!='' and self.userPassword.text()!='':
+			self.startEncryption.setDisabled(False)
+		else:
+			self.startEncryption.setDisabled(True)
+	
 	# Shows User Password on hover
 	def viewUser(self,event):
 		self.userPassword.setEchoMode(0)
@@ -148,7 +159,6 @@ class Ui_MainWindow(object):
 		if self.filename[0]:
 			self.userPassword.setDisabled(False)
 			self.ownerPassword.setDisabled(False)
-			self.startEncryption.setDisabled(False)
 
 	# Start Encryption
 	def start_Encryption(self):
