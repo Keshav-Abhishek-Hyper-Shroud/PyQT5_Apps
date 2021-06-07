@@ -33,6 +33,6 @@
 ## PDF to Docx
 #### User need to install libraries:- PyQt5, pdf2docx
  * [`pip install PyQt5`](https://pypi.org/project/PyQt5/)
- * [`pip install pdf2docx`](https://pypi.org/project/docx2pdf/)
+ * [`pip install pdf2docx`](https://pypi.org/project/pdf2docx/)
 ### Link: [*PDF to DOCX*](https://github.com/Keshav-Abhishek-Hyper-Shroud/PyQT5_Apps/blob/master/PDF%20to%20DOCX.py)
 #
