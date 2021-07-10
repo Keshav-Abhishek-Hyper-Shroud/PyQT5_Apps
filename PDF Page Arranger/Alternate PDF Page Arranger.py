@@ -1,4 +1,3 @@
-from enum import Flag
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyPDF3 import PdfFileReader,PdfFileWriter
 import os
