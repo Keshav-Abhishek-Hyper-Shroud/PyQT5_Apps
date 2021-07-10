@@ -53,5 +53,5 @@
  * [`pip install PyQt5`](https://pypi.org/project/PyQt5/)
  * [`pip install pygame`](https://pypi.org/project/pygame/)
  * [`pip install PyPDF3`](https://pypi.org/project/PyPDF3/)
-### Link: [*PDF Page Arranger*](https://bit.ly/3AT3GKO)
+### Link: [*PDF Page Arranger*](https://bit.ly/2TW4v4I)
 #
