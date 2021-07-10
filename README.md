@@ -49,7 +49,7 @@
 ### Link: [*Numeric Base Convertor*](https://bit.ly/2UzXmqR)
 #
 ## PDF Page Arranger
-#### User need to install libraries:- PyQt5, pygame
+#### User need to install libraries:- PyQt5, pygame, PyPDF3
  * [`pip install PyQt5`](https://pypi.org/project/PyQt5/)
  * [`pip install pygame`](https://pypi.org/project/pygame/)
  * [`pip install PyPDF3`](https://pypi.org/project/PyPDF3/)
