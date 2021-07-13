@@ -159,55 +159,8 @@ class Ui_MainWindow(object):
         data=self.writeableEntry.text()
         data=data.lower()
 
-        permission=True
-
-        if condition[0]=='Bin' and '2' in data:
-            msg=QtWidgets.QMessageBox()
-            msg.setWindowTitle('Error!')
-            msg.setText('Binary System accepts only 0 and 1')
-            msg.setIcon(2)
-            msg.exec_()
-            permission=False
-        
-        elif condition[0]=='Oct' and '8' in data:
-            msg=QtWidgets.QMessageBox()
-            msg.setWindowTitle('Error!')
-            msg.setText('Octal System accepts values from 0 and 7')
-            msg.setIcon(2)
-            msg.exec_()
-            permission=False
-        
-        if permission==True:
-
-            data_list=[]
-            curr_position=0
-
-            lengthofentry=len(data)
-
-            for i in data:
-                value=data[curr_position]
-
-                if value=='a':
-                    value=10
-                if value=='b':
-                    value=11
-                if value=='c':
-                    value=12
-                if value=='d':
-                    value=13
-                if value=='e':
-                    value=14
-                if value=='f':
-                    value=15
-
-                data_list.append([int(value),conversion_factor_dict[condition[0]]**(lengthofentry-1)])
-                curr_position+=1
-                lengthofentry-=1
-            
-            int_value=0
-
-            for i in data_list:
-                int_value+=i[0]*i[1]
+        try:
+            int_value=int(data,conversion_factor_dict[self.writeableFieldLabel.text().split(' the ')[1]])
             
             if condition[1].lower()=='dec':
                 to_set=f'{int_value}'
@@ -224,8 +177,15 @@ class Ui_MainWindow(object):
             if condition[1].lower()=='hex':
                 to_set=f'{hex(int_value)}'.replace('0x','')
                 self.readableEntry.setText(to_set)
-            
-        permission=True
+        
+        except ValueError:
+            message='Follow the Rules of Entry.\n\n1.\tEnter the Bin:\tIt takes number consisting of digits 0 or 1 or may be both.\n2.\tEnter the Dec:\tIt takes number consisting of digits from 0 to 9.\n3.\tEnter the Oct:\tIt takes number consisting of digits from 0 to 7.\n4.\tEnter the Hex:\tIt takes number consisting of digits from 0 to 9 then\t\t\t\t\ta,b,c,d,e,f.\n\nThank You !!'
+
+            msg=QtWidgets.QMessageBox()
+            msg.setWindowTitle('Follow!')
+            msg.setText(message)
+            msg.setIcon(1)
+            msg.exec_()
     
     def pickthemecolor(self):
         color=QtWidgets.QColorDialog()
