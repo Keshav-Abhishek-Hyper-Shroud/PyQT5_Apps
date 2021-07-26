@@ -94,10 +94,10 @@ class Ui_MainWindow(object):
             self.plainTextEdit.setPlainText('')
     
     def from_curr(self):
-        self.calculatee()
+        self.calculate()
     
     def to_curr(self):
-        self.calculatee()
+        self.calculate()
 
 if __name__ == "__main__":
     import sys
