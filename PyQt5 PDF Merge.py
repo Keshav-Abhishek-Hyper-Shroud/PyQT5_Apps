@@ -353,7 +353,7 @@ class Ui_MainWindow(object):
             msg.setWindowTitle('Merge Done!!!')
             msg.setText('All desired files are completely merged, successfully...')
             msg.setIcon(1)
-            msg.exec_()
+            msg.exec_();self.reset();self.tabWidget.setCurrentIndex(0)
     
     def reset(self):
         self.SS.setDisabled(True)
