@@ -8,6 +8,7 @@ class UI(QMainWindow):
 	def __init__(self):
 		super(UI,self).__init__()
 
+		# For filenamed 'CLOCK.ui' goto "https://github.com/Keshav-Abhishek-Hyper-Shroud/PyQT5_Apps/blob/master/CLOCK.ui"
 		uic.loadUi('CLOCK.ui',self)
 		self.show()
 
