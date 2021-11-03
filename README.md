@@ -55,3 +55,9 @@
  * [`pip install PyPDF3`](https://pypi.org/project/PyPDF3/)
 ### Link: [*PDF Page Arranger*](https://bit.ly/2TW4v4I)
 #
+## MP4 to MP3 Convertor
+#### User need to install libraries:- PyQt5, pygame, moviepy
+ * [`pip install PyQt5`](https://pypi.org/project/PyQt5/)
+ * [`pip install pygame`](https://pypi.org/project/pygame/)
+ * [`pip install moviepy`](https://pypi.org/project/moviepy/)
+ ### Link: [*MP4 to MP3 Convertor*](https://github.com/Keshav-Abhishek-Hyper-Shroud/PyQT5_Apps/blob/master/MP4%20to%20MP3.py)
