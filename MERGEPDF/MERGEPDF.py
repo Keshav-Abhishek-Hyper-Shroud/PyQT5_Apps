@@ -89,7 +89,7 @@ class Ui_MainWindow(object):
     def selectFiles(self):
         listPdfFiles = QtWidgets.QFileDialog.getOpenFileNames(None,'Select PDF Files','/','PDF (*.pdf)')
 
-        if listPdfFiles==[]:
+        if listPdfFiles[0]!=[]:
             for i in listPdfFiles[0]:
                 checkEncryption(i)
                 if trueFalse==False:
