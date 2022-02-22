@@ -62,7 +62,7 @@
  * [`pip install moviepy`](https://pypi.org/project/moviepy/)
 ### Link: [*MP4 to MP3 Convertor*](https://github.com/KeshavAbhishek/PyQT5_Apps/blob/master/MP4%20to%20MP3.py)
 #
-## Image Resize
+## Image Resizer
 #### User need to install libraries:- PyQt5, pillow
  * [`pip install PyQt5`](https://pypi.org/project/PyQt5/)
  * [`pip install pillow`](https://pypi.org/project/pillow/)
